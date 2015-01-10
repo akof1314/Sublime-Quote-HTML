@@ -1,3 +1,18 @@
+# 修改成C++字符串 #
+
+
+	_T("<div class=\"demo\">\n")
+	_T("    <ol>\n")
+	_T("        <li>3</li>\n")
+	_T("        <li><a href='#'>2</a></li>\n")
+	_T("        <li><a href=\"#\">3</a></li>\n")
+	_T("    </ol>\n")
+	_T("</div>")
+
+
+以下是原文文档：
+----------
+
 QuoteHTML for Sublime Text
 ==========================
 

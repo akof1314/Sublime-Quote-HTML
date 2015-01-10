@@ -27,27 +27,34 @@ class QuoteHtmlCommand(sublime_plugin.TextCommand):
 	def quote(self, code, action):
 		lines = code.split('\n')
 
-		if action == 'single':
-			for i in range(len(lines)):
-				lines[i] = re.sub(r'(?!\\)\'', r"\\'", lines[i])
-				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r"\1'\2' +", lines[i])
-
-		elif action == 'double':
+		if action == 'double-ws':
 			for i in range(len(lines)):
 				lines[i] = re.sub(r'(?!\\)"', r'\\"', lines[i])
-				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r'\1"\2" +', lines[i])
+				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r'"\1\2"', lines[i])
 
-		elif action == 'single-ws':
-			for i in range(len(lines)):
-				lines[i] = re.sub(r'(?!\\)\'', r"\\'", lines[i])
-				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r"'\1\2' +", lines[i])
-
-		elif action == 'double-ws':
+		elif action == 'double-wsn':
 			for i in range(len(lines)):
 				lines[i] = re.sub(r'(?!\\)"', r'\\"', lines[i])
-				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r'"\1\2" +', lines[i])
+				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r'"\1\2\\n"', lines[i])
+			lines[-1] = lines[len(lines) - 1][0:-3] + '"';
+
+		elif action == 'double-wst':
+			for i in range(len(lines)):
+				lines[i] = re.sub(r'(?!\\)"', r'\\"', lines[i])
+				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r'_T("\1\2")', lines[i])
+
+		elif action == 'double-wstn':
+			for i in range(len(lines)):
+				lines[i] = re.sub(r'(?!\\)"', r'\\"', lines[i])
+				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r'_T("\1\2\\n")', lines[i])
+			lines[-1] = lines[len(lines) - 1][0:-4] + '")';
+
+		elif action == 'double-wstrn':
+			for i in range(len(lines)):
+				lines[i] = re.sub(r'(?!\\)"', r'\\"', lines[i])
+				lines[i] = re.sub(r'(\s*)(\S+(\s+\S+)*)\s*', r'_T("\1\2\\r\\n")', lines[i])
+			lines[-1] = lines[len(lines) - 1][0:-6] + '")';
 
 		code = '\n'.join(lines)
-		code = re.sub(r'(\s\S)*? \+$', r"\1;", code)
 
 		return code

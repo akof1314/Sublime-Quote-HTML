@@ -1,6 +1,7 @@
 [
-    { "caption": "Quote 'HTML'",      "command": "quote_html",    "args": { "action": "single" }  },
-    { "caption": "Quote \"HTML\"",    "command": "quote_html",    "args": { "action": "double" }  },
-    { "caption": "Quote '  <HTML>'",      "command": "quote_html",    "args": { "action": "single-ws" }  },
-    { "caption": "Quote \"  <HTML>\"",    "command": "quote_html",    "args": { "action": "double-ws" }  }
+    { "caption": "Quote \"  <HTML>\"",    "command": "quote_html",    "args": { "action": "double-ws" }  },
+    { "caption": "Quote \"  <HTML>\\n\"",    "command": "quote_html",    "args": { "action": "double-wsn" }  },
+    { "caption": "Quote _T(\"  <HTML>\")",    "command": "quote_html",    "args": { "action": "double-wst" }  },
+    { "caption": "Quote _T(\"  <HTML>\\n\")",    "command": "quote_html",    "args": { "action": "double-wstn" }  },
+    { "caption": "Quote _T(\"  <HTML>\\r\\n\")",    "command": "quote_html",    "args": { "action": "double-wstrn" }  }
 ]
